@@ -19,7 +19,7 @@ namespace ShelterAnimalApi
             // Add services to the container.
 
             builder.Services.AddDbContext<AnimalShelterContext>(options =>
-                  options.UseSqlServer(builder.Configuration.GetConnectionString("Server=LAPTOP-886FNGF4;Database=AnimalShelter;User ID=sa;Password=password_123;TrustServerCertificate=True;"),
+                  options.UseSqlServer(builder.Configuration["ConnectionString"],
                          b => b.MigrationsAssembly("DataAccess")));
 
 
@@ -76,6 +76,13 @@ namespace ShelterAnimalApi
             });
 
             var app = builder.Build();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var context = services.GetRequiredService<AnimalShelterContext>();
+                context.Database.Migrate(); // Применяем миграции автоматически
+            }
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
