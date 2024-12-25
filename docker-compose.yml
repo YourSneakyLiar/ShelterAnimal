@@ -9,7 +9,7 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:5000
       - ASPNETCORE_ENVIROMENT=Development
-      - ConnectionString=Server=db;Database=AnimalShelter;User ID=SA;Password=password_123;TrustServerCertificate=True;
+      - ConnectionString=Server=sql.bsite.net\MSSQL2016;Database=shelteranimal_;User ID=shelteranimal_;Password=password_123;TrustServerCertificate=True;
     ports:
       - "5000:5000"
     depends_on:
