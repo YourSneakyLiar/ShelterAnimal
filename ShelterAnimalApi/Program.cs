@@ -19,8 +19,7 @@ namespace ShelterAnimalApi
             // Add services to the container.
 
             builder.Services.AddDbContext<AnimalShelterContext>(options =>
-                  options.UseSqlServer(builder.Configuration["ConnectionString"],
-                         b => b.MigrationsAssembly("DataAccess")));
+                  options.UseSqlServer(builder.Configuration["ConnectionString"]));
 
 
 
@@ -86,10 +85,10 @@ namespace ShelterAnimalApi
 
             // Configure the HTTP request pipeline.
            // if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            
+            app.UseSwagger();
+            app.UseSwaggerUI();
+            
 
             app.UseCors(builder => builder.WithOrigins(new[] { "https://shelteranimalapi.onrender.com", })
                                                    .AllowAnyHeader()

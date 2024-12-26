@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-end
 WORKDIR /app
 
 COPY . ./   
-RUN dotnet publish ./BlazorClient.csproj -c Release -o output
+RUN dotnet publish ./BlazorClient1.csproj -c Release -o output
 
 FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
